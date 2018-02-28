@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    List<SelectListItem> li = new List<SelectListItem>();
+    li.Add(new SelectListItem() { Text = "Apple", Value = "20" });
+    li.Add(new SelectListItem() { Text = "Mango", Value = "30" });
+    li.Add(new SelectListItem() { Text = "Grapes", Value = "40" });
+    li.Add(new SelectListItem() { Text = "Orange", Value = "50" });
+}
+
+<h2>Index</h2>
+
+@Html.DropDownList("FruitList", li, "Select Any Fruit")

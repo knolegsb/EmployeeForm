@@ -1,0 +1,29 @@
+﻿
+@model EmployeeForm.Models.FruitList
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "Fruit"))
+{ 
+    <table>
+        @for (int i = 0; i < Model.FruitLists.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Html.CheckBoxFor(m => Model.FruitLists[i].IsCheck)
+                    @Model.FruitLists[i].Name
+                    @Html.HiddenFor(m => Model.FruitLists[i].Id)
+                    @Html.HiddenFor(m => Model.FruitLists[i].Name)
+                </td>
+            </tr>
+        }
+    </table><br />
+    <input type="submit" value="submit" />
+}
+<br />
+<br />
+<p>@ViewBag.SelectedFruit</p>

@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "ListFromDatabase";
+}
+
+<h2>List From Database</h2>
+
+@Html.DropDownList("FruitList", ViewBag.FruitsList as SelectList, "Please Select Fruit Name")
+
+<br />
+<br />
+
+<span id="span1"></span>
+<br />
+<br />
+<span id="span2"></span>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#FruitList").change(function () {
+            var a = $("#FruitList Option:Selected").text();
+            $("#span1").text(a);
+            $("#span2").text($("#span2").text() + a);
+        });
+    });
+</script>

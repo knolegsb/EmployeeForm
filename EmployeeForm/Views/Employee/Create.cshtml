@@ -1,0 +1,70 @@
+﻿@model EmployeeForm.Models.Employee
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Department" class="control-label"></label>
+                @*<select asp-for="Department" class="form-control" asp-items="ViewBag.DeptList" />*@                
+                @Html.DropDownList("DepartmentId", ViewBag.DeptList as SelectList, "Please Select Department",new { @class = "form-control" })
+                
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="PayRollTypes" class="control-label"></label>
+                <select asp-for="PayRollTypes" class="form-control" asp-items="Html.GetEnumSelectList<PayRollType>()"></select>
+                <span asp-validation-for="PayRollTypes" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label>Pay Roll Types</label>
+                <br />
+                <div class="radio">
+                    <label><input type="radio" value="1" checked="checked" data-val="true" asp-for="PayRollTypes" />W-2</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" value="2" asp-for="PayRollTypes" />1099</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" value="3" asp-for="PayRollTypes" />None</label>
+                </div>
+                <span asp-validation-for="PayRollTypes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<style>
+    .radio {
+        display:inline-block;
+        margin: 0px 30px;
+    }
+</style>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
